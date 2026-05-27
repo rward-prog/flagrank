@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --gold: #d4aa50;
+  --green: #4adf80;
+  --orange: #e08040;
+  --red: #e04040;
+  --bg: #0a0a0f;
+  --card: #14141c;
+  --border: #2a2a3a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes timerDrain {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+@keyframes confettiBurst {
+  0%   { transform: scale(0) rotate(0deg); opacity: 1; }
+  60%  { transform: scale(1.4) rotate(180deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 0; }
+}
+
+@keyframes rankReveal {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes cashFall {
+  0%   { transform: translateY(-80px) rotate(0deg) scale(1);   opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(540deg) scale(0.6); opacity: 0; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 170, 80, 0); }
+  50%       { box-shadow: 0 0 0 8px rgba(212, 170, 80, 0.3); }
+}
+
+.animate-rank-reveal { animation: rankReveal 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-slide-up    { animation: slideUp 0.3s ease forwards; }
+.animate-confetti    { animation: confettiBurst 0.8s ease forwards; }
+.animate-pulse-gold  { animation: pulse-gold 1s ease infinite; }
+
+.timer-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--gold);
+  transition: background 0.3s;
+}
+
+.metric-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+}
+
+.metric-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  background: #1e1e2a;
+  transform: translateY(-1px);
+}
+
+.metric-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.metric-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.rank-badge {
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: rankReveal 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+.fact-card {
+  background: #1a1a2e;
+  border: 1px solid #3a3a5a;
+  border-radius: 12px;
+  padding: 14px 16px;
+  animation: slideUp 0.4s ease forwards;
+}
+
+.leaderboard-row:nth-child(odd) { background: rgba(255,255,255,0.02); }
