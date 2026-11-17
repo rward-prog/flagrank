@@ -1343,6 +1343,15 @@ export const COUNTRIES = [
   },
 ]
 
+// FIX: the "smallest" ranks were typed in by hand and did not match the "largest" ranks
+// (for example Luxembourg showed 158th smallest). Work them out from the "largest" ranks
+// instead, so the two always mirror each other. 1 = smallest, about 195 = largest.
+const WORLD_COUNT_PLUS_ONE = 196
+for (const c of COUNTRIES) {
+  if (c.ranks.area != null) c.ranks.smallarea = WORLD_COUNT_PLUS_ONE - c.ranks.area
+  if (c.ranks.population != null) c.ranks.smallpop = WORLD_COUNT_PLUS_ONE - c.ranks.population
+}
+
 function fisherYates(arr) {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
